@@ -1,0 +1,12 @@
+# Nim writes a test executable next to its source with the extension dropped
+# (tests/foo.nim -> tests/foo). Ignore the compiler's output, not the sources.
+tests/**
+!tests/**/
+!tests/**/*.*
+nimcache/
+nimcache*/
+*.dSYM/
+*.o
+*.a
+.DS_Store
+target/
