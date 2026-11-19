@@ -7,7 +7,8 @@ srcDir = "src"
 
 # Dependencies
 requires "nim >= 2.0.0"
-requires "nim_outcome >= 0.1.0"
+# Not in the nimble registry, so named by URL.
+requires "https://github.com/jasagiri/nim-outcome >= 0.3.0"
 
 task test, "Run tests":
   for f in listFiles("tests/external"):
