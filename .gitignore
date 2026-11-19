@@ -10,3 +10,5 @@ nimcache*/
 *.a
 .DS_Store
 target/
+bin/
+.mutation/

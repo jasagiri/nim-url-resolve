@@ -12,8 +12,8 @@ and the modules those export whole.
 
 | ID | test files (count) |
 |---|---|
-| URLR-01 | tests/external/test_resolve.nim (4) |
-| URLR-02 | tests/external/test_resolve.nim (2) |
+| URLR-01 | tests/external/test_resolve.nim (6) |
+| URLR-02 | tests/external/test_resolve.nim (3) |
 | URLR-03 | tests/external/test_properties.nim (1), tests/external/test_resolve.nim (2) |
 | URLR-04 | tests/external/test_properties.nim (1), tests/external/test_resolve.nim (1) |
 | URLR-05 | tests/external/test_properties.nim (2) |

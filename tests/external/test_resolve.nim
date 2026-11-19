@@ -1,4 +1,4 @@
-import std/unittest
+import std/[unittest, strutils]
 import nim_url_resolve
 
 proc resolved(base, reference: string): string =
@@ -48,12 +48,28 @@ suite "URLR-01 RFC 3986 §5.4 の例":
     check resolved("http://a", "b") == "http://a/b"
     check resolved("http://a?q", "?r") == "http://a?r"
 
+  # SPEC: URLR-01
+  test "Given path が段 1 つの基底, When 相対の path, Then 最後の / までを残して merge する (§5.2.3)":
+    check resolved("http://a/c", "g") == "http://a/g"
+    check resolved("http://a/c", "../g") == "http://a/g"
+
+  # SPEC: URLR-01
+  test "Given 空の authority の参照, When resolveReference, Then authority は空のまま path の dot segment を除く":
+    check resolved("http://a/b", "///../g") == "http:///g"
+
 suite "URLR-02 基底":
   # SPEC: URLR-02
   test "Given scheme の無い基底, When 相対の参照, Then 失敗":
     check not resolveReference("", "g").isOk
     check not resolveReference("/a/b", "g").isOk
     check not resolveReference("//a/b", "g").isOk
+
+  # SPEC: URLR-02
+  test "Given scheme の無い基底, When 相対の参照, Then 失敗の理由は基底を示す":
+    let r = resolveReference("/a/b", "g")
+    check not r.isOk
+    check "/a/b" in r.error
+    check "no scheme" in r.error
 
   # SPEC: URLR-02
   test "Given フラグメントのある基底, When 空の参照, Then 基底のフラグメントは捨てる":
@@ -80,6 +96,8 @@ suite "URLR-04 removeDotSegments":
     check removeDotSegments("..") == ""
     check removeDotSegments("/..") == "/"
     check removeDotSegments("a//b/./c") == "a//b/c"
+    check removeDotSegments("../a/b") == "a/b"
+    check removeDotSegments("./a") == "a"
 
 suite "URLR-06 schemeOf":
   # SPEC: URLR-06

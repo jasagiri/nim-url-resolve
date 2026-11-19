@@ -1,0 +1,64 @@
+{
+  "survivors": [
+    {
+      "fingerprint": "src/nim_url_resolve.nim:RVR:4873c60178981609:0",
+      "file": "src/nim_url_resolve.nim",
+      "line": 31,
+      "mutator": "RVR",
+      "original": "return \"\"",
+      "replacement": "<return default>",
+      "class": "equivalent",
+      "reason": "schemeOf の先頭が ALPHA でないときの `return \"\"`。string の既定値は \"\" なので、`return default` と同じ値を返す。"
+    },
+    {
+      "fingerprint": "src/nim_url_resolve.nim:ROR:048f9da66bbc8bda:0",
+      "file": "src/nim_url_resolve.nim",
+      "line": 54,
+      "mutator": "ROR",
+      "original": "slash < 0",
+      "replacement": "<< -> <=>",
+      "class": "equivalent",
+      "reason": "`slash` は `rest.find('/', 2)` で、見つからなければ -1、見つかれば 2 以上。0 と 1 を取らないので `< 0` と `<= 0` は同じ。"
+    },
+    {
+      "fingerprint": "src/nim_url_resolve.nim:CVR:f9c42b6e1d1e78e2:0",
+      "file": "src/nim_url_resolve.nim",
+      "line": 54,
+      "mutator": "CVR",
+      "original": "0",
+      "replacement": "1",
+      "class": "equivalent",
+      "reason": "同じ理由で `slash < 0` と `slash < 1` は同じ (値は -1 か 2 以上)。"
+    },
+    {
+      "fingerprint": "src/nim_url_resolve.nim:ROR:e71d806035fa76b5:0",
+      "file": "src/nim_url_resolve.nim",
+      "line": 80,
+      "mutator": "ROR",
+      "original": "next < 0",
+      "replacement": "<< -> <=>",
+      "class": "equivalent",
+      "reason": "`next` は `input.find('/', 1)` で、-1 か 1 以上。0 を取らないので `< 0` と `<= 0` は同じ。"
+    },
+    {
+      "fingerprint": "src/nim_url_resolve.nim:CVR:5eef8f807820ab52:0",
+      "file": "src/nim_url_resolve.nim",
+      "line": 80,
+      "mutator": "CVR",
+      "original": "0",
+      "replacement": "1",
+      "class": "equivalent",
+      "reason": "同じ理由で `next < 0` と `next < 1` は同じ (値は -1 か 1 以上)。"
+    },
+    {
+      "fingerprint": "src/nim_url_resolve.nim:ROR:e0da8daf78ad768f:0",
+      "file": "src/nim_url_resolve.nim",
+      "line": 87,
+      "mutator": "ROR",
+      "original": "p.scheme.len > 0",
+      "replacement": "<> -> >=>",
+      "class": "equivalent",
+      "reason": "recompose を呼ぶのは resolveReference の 2 か所だけで、どちらも scheme が空でない (98 行で参照の scheme が空でない枝、そうでなければ 103 行で基底の scheme が空なら先に失敗を返す)。scheme が空のときに `:` を足す枝は通らない。"
+    }
+  ]
+}

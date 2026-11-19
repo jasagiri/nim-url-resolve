@@ -34,5 +34,5 @@ nimble --useSystemNim test   # tests/external/*.nim
 
 ## 確かめていないこと
 
-- 変異検査 (G2) は未測定 (`docs/quality/g2-unmeasured.md`)。
+- 変異検査 (G2): 2026-11-19 に 94.39%。生き残りの 6 件はどれも等価 (`docs/quality/g2-mutation.md`)。
 - ファジングは流していない。性質のテストは、4 種と 8 種の文字から作った文字列だけ。

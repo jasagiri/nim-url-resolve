@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "src/nim_url_resolve.nim"
+  ],
+  "buildCommand": "nim c --hints:off -o:bin/tests/mt_resolve tests/external/test_resolve.nim && nim c --hints:off -o:bin/tests/mt_properties tests/external/test_properties.nim",
+  "testCommand": "./bin/tests/mt_resolve && ./bin/tests/mt_properties",
+  "mutators": [
+    "AOR",
+    "ROR",
+    "LOR",
+    "BLR",
+    "SDL",
+    "RVR",
+    "LBR",
+    "CVR"
+  ],
+  "parallelism": 3,
+  "timeoutMs": 0,
+  "minScore": 0,
+  "reports": [
+    "console",
+    "json"
+  ],
+  "outputDir": ".mutation/url_resolve",
+  "incremental": false
+}
